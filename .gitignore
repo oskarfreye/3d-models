@@ -1,0 +1,5 @@
+# Private models (separate private repo, never published here)
+private/
+
+.DS_Store
+*.3mf.bak
