@@ -5,6 +5,7 @@
 | Model | Preview | Description |
 |---|---|---|
 | [Twist Lamp](models/twist-lamp/) | <img src="models/twist-lamp/images/vorschau_HELLO.png" width="160"> | Twisted vase-mode lamp shade for an LED puck light, with custom name lettering in the base |
+| [Camera Mount Knob](models/kamera-knauf/) | <img src="models/kamera-knauf/images/vorschau_knauf.png" width="160"> | Clamping knob for an M5 hinge on a phone/camera mount, self-tapping into PETG |
 
 ## Layout
 
