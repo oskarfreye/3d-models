@@ -6,6 +6,7 @@
 |---|---|---|
 | [Twist Lamp](models/twist-lamp/) | <img src="models/twist-lamp/images/vorschau_HELLO.png" width="160"> | Twisted vase-mode lamp shade for an LED puck light, with custom name lettering in the base |
 | [Camera Mount Knob](models/kamera-knauf/) | <img src="models/kamera-knauf/images/vorschau_knauf.png" width="160"> | Clamping knob for an M5 hinge on a phone/camera mount, self-tapping into PETG |
+| [ST3215 Robot Arm](models/robot-arm/) | <img src="models/robot-arm/images/arm_straight.png" width="160"> | 5-DOF desk robot arm with a servo gripper for six Waveshare ST3215 bus servos, printable on an A1 mini |
 
 ## Layout
 
