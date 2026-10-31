@@ -7,6 +7,7 @@ import cadquery as cq
 
 from case import base, lid, fit_test
 from camera import foot, plate
+from antenna import holder, H
 from params import BED, TOP_Z, SPLIT_Z
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -23,9 +24,16 @@ def plate_print():
     return plate().rotate((0, 0, 0), (0, 1, 0), 90)
 
 
+def holder_print():
+    """Antenna holder flipped, bulkhead panel on the bed."""
+    return (holder().rotate((0, 0, 0), (1, 0, 0), 180)
+            .translate((0, 0, TOP_Z + H)))
+
+
 PARTS = [
     ("base", base),
     ("lid", lid_print),
+    ("antenna_holder", holder_print),
     ("camera_foot", foot),
     ("camera_plate", plate_print),
     ("fit_test", fit_test),

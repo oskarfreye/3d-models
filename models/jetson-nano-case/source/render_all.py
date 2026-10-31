@@ -8,6 +8,7 @@ import cadquery as cq
 
 from case import base, lid
 from camera import assembled
+from antenna import holder
 from params import *
 from render import render
 
@@ -39,6 +40,7 @@ def main():
     a = cq.Assembly()
     a.add((b).val(), color=cq.Color(0.20, 0.22, 0.25))
     a.add((l).val(), color=cq.Color(0.85, 0.45, 0.10))
+    a.add((holder()).val(), color=cq.Color(0.20, 0.22, 0.25))
     a.add((f.translate(cam_at)).val(), color=cq.Color(0.20, 0.22, 0.25))
     a.add((p.translate(cam_at)).val(), color=cq.Color(0.85, 0.45, 0.10))
     render(a, os.path.join(IMG, "case.png"), (0.9, -1.0, 0.6),
@@ -53,6 +55,8 @@ def main():
     render(b.rotate((0, 0, 0), (1, 0, 0), 180),
            os.path.join(IMG, "underside.png"), (0.5, -0.8, 1.0),
            width=900, height=800)
+    render(a, os.path.join(IMG, "antenna_holder.png"), (-1.0, -0.6, 0.5),
+           width=1000, height=800)
     print("ok")
 
 

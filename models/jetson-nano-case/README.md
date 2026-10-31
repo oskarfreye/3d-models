@@ -10,11 +10,11 @@ top. Every part fits the Bambu Lab A1 mini and is designed for PETG.
 
 | | |
 |---|---|
-| Outside | 100 × 120 × 48 mm |
+| Outside | 100 × 120 × 48 mm (68 mm with the antenna holder) |
 | Board | Jetson Nano Dev Kit, 80 × 100 mm, 58 × 86 mm hole pattern |
 | Grid | M3 inserts, 10 mm pitch: 118 on the underside, 36 around the top deck |
 | I/O | One open window on the +X side: barrel jack, HDMI, DP, 4 × USB, RJ45, micro-USB |
-| Extras | 2 × RP-SMA antenna holes, CSI ribbon slot, roof and back-wall vents |
+| Extras | Antenna holder on the deck with a cable canal, CSI ribbon slot, roof and back-wall vents |
 | Camera | Tilting Raspberry Pi Camera v2 mount, −60° to +40° |
 
 ![Board in the base](images/base_board.png)
@@ -26,6 +26,7 @@ top. Every part fits the Bambu Lab A1 mini and is designed for PETG.
 | `stl/fit_test.stl` | Print first: frame with the four standoffs. Screw the board on to confirm the hole pattern |
 | `stl/base.stl` | Floor with the underside insert grid, board standoffs, lower I/O window, inlet slots |
 | `stl/lid.stl` | Exported roof-down for printing. Top deck grid, vents, antenna holes, CSI slot |
+| `stl/antenna_holder.stl` | Exported upside down. Hood for 2 RP-SMA bulkheads, screws onto the back deck row, canal runs the pigtails down into the back-wall holes |
 | `stl/camera_foot.stl` | Bolts to two deck inserts 30 mm apart, hinge ears |
 | `stl/camera_plate.stl` | Exported on its side. Pi Camera v2 standoffs (M2), hinge tongue |
 
@@ -35,11 +36,14 @@ top. Every part fits the Bambu Lab A1 mini and is designed for PETG.
 |---:|---|---|
 | 4 | M2.5 × 8 screw | Board to standoffs, self-tapping into PETG |
 | 4 | M3 × 16 socket head | Lid to base, through the lid corners |
-| 4 | M2 × 6 screw | Camera to plate, self-tapping |
+| 2 | M3 × 10 socket head | Antenna holder to deck |
 | 2 | M3 × 8 socket head | Camera foot to deck |
-| 1 | M3 × 16 + nyloc nut | Camera hinge |
+| 1 | M3 × 16 + M3 nyloc nut | Camera hinge |
+| 4 | M2 × 6 screw | Camera to plate, self-tapping |
 | 2 | RP-SMA bulkhead pigtail | WiFi antennas (from your M.2 card kit) |
-| 4 + n | ruthex M3 × 5.7 heat-set insert | 4 in the base corner posts, then only the grid points you use |
+| 8 | ruthex M3 × 5.7 heat-set insert | 4 base corner posts, 2 deck for the antenna holder (X = −45, Y = ±35), 2 deck for the camera (X = ±15, Y = −55) |
+
+Add more inserts only at the grid points you use later.
 
 You don't need to fill the whole grid. Install inserts where a chassis or
 accessory actually bolts on. The pockets are Ø 4.0 mm (ruthex datasheet
@@ -59,6 +63,7 @@ value). The robot arm uses 4.6 mm; if your inserts end up loose, change
 |---|---|
 | `base` | As exported, floor on the bed |
 | `lid` | As exported, roof on the bed (the CSI slot bridges 32 mm) |
+| `antenna_holder` | As exported, bulkhead panel on the bed, canal pointing up |
 | `camera_foot` | As exported, flat |
 | `camera_plate` | As exported, on its side |
 | `fit_test` | As exported, flat |
@@ -71,14 +76,21 @@ value). The robot arm uses 4.6 mm; if your inserts end up loose, change
    grid inserts you need for mounting.
 3. Screw the board onto the standoffs with 4 × M2.5 × 8, I/O facing the open
    side.
-4. Mount the antenna bulkheads in the lid's back wall. If you use the camera,
-   feed the ribbon out through the slot in the −Y wall first.
+4. Antennas: the bulkheads don't fit inside the lid's back wall because the
+   heatsink is in the way, so they go in the antenna holder. Push each pigtail's
+   U.FL end in through one of the two back-wall holes and clip it onto the WiFi
+   card. Mount both bulkheads through the holder's top panel (nut and washer on
+   top), lay the cables into the canal, and screw the holder onto the deck
+   inserts at X = −45, Y = ±35 with 2 × M3 × 10. If you use the camera, feed
+   its ribbon out through the slot in the −Y wall.
 5. Install inserts in the deck points you plan to use, close the lid with
    4 × M3 × 16.
 6. Camera: screw the Pi Camera v2 to the plate (4 × M2), join plate and foot
    with the M3 hinge bolt, and bolt the foot to the two front deck inserts at
    X = ±15, Y = −55. The foot overhangs the front edge so the case stays out of
    the field of view. Tighten the nyloc until the plate holds its angle.
+
+![Antenna holder](images/antenna_holder.png)
 
 ![Underside grid](images/underside.png)
 
@@ -107,4 +119,5 @@ All dimensions are in `source/params.py`. After changing them:
 .venv/bin/python models/jetson-nano-case/source/render_all.py   # README images
 ```
 
-`case.py` builds the base, lid and fit test, `camera.py` the camera mount.
+`case.py` builds the base, lid and fit test, `camera.py` the camera mount,
+`antenna.py` the antenna holder. `check_fit.py` checks the parts for collisions.
